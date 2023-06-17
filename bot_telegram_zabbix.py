@@ -8,7 +8,7 @@ import re
 # Configuración de Zabbix
 ZABBIX_URL = 'http://192.168.1.115/zabbix/'  # URL de Zabbix
 ZABBIX_USER = 'rtoapanta'  # Usuario de Zabbix
-ZABBIX_PASSWORD = 'TECNOLOGO'  # Contraseña de Zabbix
+ZABBIX_PASSWORD = 'xxxx'  # Contraseña de Zabbix
 
 # Configuración de Telegram
 TELEGRAM_TOKEN = '1067083332:AAGIQu8Ck8oDQtAJ0GoYRa-9xZ3hjT6OGzA'  # Token de acceso de tu bot de Telegram

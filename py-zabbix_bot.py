@@ -2,8 +2,23 @@ from pyzabbix import ZabbixAPI
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Updater, CallbackContext, CommandHandler, CallbackQueryHandler, MessageHandler, Filters
 from pythonping import ping
-import socket
-import re
+import configparser
+
+# Crear un objeto de configuración
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+# Obtener la configuración de Zabbix
+zabbix_url = config.get('Zabbix', 'url')
+zabbix_user = config.get('Zabbix', 'user')
+zabbix_password = config.get('Zabbix', 'password')
+
+# Por ejemplo, puedes imprimir la configuración para verificar
+print(f"URL de Zabbix: {zabbix_url}")
+print(f"Usuario de Zabbix: {zabbix_user}")
+print(f"Contraseña de Zabbix: {zabbix_password}")
+
+
 
 # Configuración de Zabbix
 ZABBIX_URL = 'http://192.168.1.115/zabbix/'  # URL de Zabbix

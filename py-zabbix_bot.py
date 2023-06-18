@@ -9,28 +9,22 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 # Obtener la configuración de Zabbix
-zabbix_url = config.get('Zabbix', 'url')
-zabbix_user = config.get('Zabbix', 'user')
-zabbix_password = config.get('Zabbix', 'password')
+zabbix_url = config.get('zabbix', 'url')  # URL de Zabbix
+zabbix_user = config.get('zabbix', 'user')  # Usuario de Zabbix
+zabbix_password = config.get('zabbix', 'password')  # Contraseña de Zabbix
 
 # Por ejemplo, puedes imprimir la configuración para verificar
 print(f"URL de Zabbix: {zabbix_url}")
 print(f"Usuario de Zabbix: {zabbix_user}")
 print(f"Contraseña de Zabbix: {zabbix_password}")
 
-
-
-# Configuración de Zabbix
-ZABBIX_URL = 'http://192.168.1.115/zabbix/'  # URL de Zabbix
-ZABBIX_USER = 'rtoapanta'  # Usuario de Zabbix
-ZABBIX_PASSWORD = 'TECNOLOGO'  # Contraseña de Zabbix
-
 # Configuración de Telegram
 TELEGRAM_TOKEN = '1067083332:AAGIQu8Ck8oDQtAJ0GoYRa-9xZ3hjT6OGzA'  # Token de acceso de tu bot de Telegram
 
 # Inicializar la API de Zabbix
-zabbix = ZabbixAPI(ZABBIX_URL)
-zabbix.login(ZABBIX_USER, ZABBIX_PASSWORD)
+zabbix = ZabbixAPI(zabbix_url)
+zabbix.login(zabbix_user, zabbix_password)
+
 
 def ping_host(update: Update, context: CallbackContext):
     # Enviar el mensaje de solicitud de palabras clave al usuario
@@ -56,8 +50,6 @@ def buscar_host(update: Update, context: CallbackContext):
     # Enviar los botones como respuesta al usuario
     update.message.reply_text('Hosts encontrados:', reply_markup=reply_markup)
 
-
-import re
 
 def obtener_ping(update: Update, context: CallbackContext):
     # Obtener el ID del host seleccionado
@@ -85,7 +77,9 @@ def obtener_ping(update: Update, context: CallbackContext):
     respuesta_ping_str = str(respuesta_ping)
 
     # Enviar la respuesta del ping como mensaje al usuario
-    update.callback_query.message.reply_text(f"Respuesta del ping para el host {host[0]['host']} ({ip_address}):\n\n{respuesta_ping_str}")
+    update.callback_query.message.reply_text(
+        f"Respuesta del ping para el host {host[0]['host']} ({ip_address}):\n\n{respuesta_ping_str}")
+
 
 def main():
     # Configurar el bot de Telegram
